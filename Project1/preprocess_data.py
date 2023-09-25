@@ -84,3 +84,7 @@ def normal_train_test_split(X: DataFrame, y: DataFrame, test_size_: float = 0.2)
     )
 
     return X_train, X_test, y_train, y_test
+
+
+if __name__ == "__main__":
+    preprocess_credit_card_data()

@@ -149,7 +149,3 @@ def run_decision_trees():
 
     print(f'no prune: {no_prune_scores}')
     print(f'pruned_scores: {pruned_scores}')
-
-
-
-

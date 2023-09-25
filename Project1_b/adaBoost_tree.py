@@ -175,21 +175,18 @@ def adaBoost_best():
 
 
 def run_adaBoost_trees():
-    # no_prune_scores = adaBoost_tree_no_prune()
-    # print(no_prune_scores)
+    no_prune_scores = adaBoost_tree_no_prune()
+    print(no_prune_scores)
 
-    # prune_adaBoost_tree(param_type='max_leaf_nodes', i=5, j=20, k=5)
-    # prune_adaBoost_tree(param_type='max_depth', i=2, j=17, k=5)
-    # prune_adaBoost_tree(param_type='min_samples_split', i=5, j=20, k=5)
-    # prune_adaBoost_tree(param_type='min_samples_leaf', i=15, j=30, k=5)
-    # prune_adaBoost_tree(param_type='n_estimators', i=30, j=70, k=10)
+    prune_adaBoost_tree(param_type='max_leaf_nodes', i=5, j=20, k=5)
+    prune_adaBoost_tree(param_type='max_depth', i=2, j=17, k=5)
+    prune_adaBoost_tree(param_type='min_samples_split', i=5, j=20, k=5)
+    prune_adaBoost_tree(param_type='min_samples_leaf', i=15, j=30, k=5)
+    prune_adaBoost_tree(param_type='n_estimators', i=30, j=70, k=10)
 
     pruned_res = adaBoost_best()
     print(pruned_res)
 
-
-if __name__ == "__main__":
-    run_adaBoost_trees()
 
 
 

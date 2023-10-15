@@ -1,4 +1,5 @@
 import os
+import numpy as np
 import matplotlib.pyplot as plt
 
 from typing import Dict
@@ -160,6 +161,7 @@ def plot_p2_tune_gd_lr(res: Dict):
     ax[0][0].legend()
     ax[0][0].set_title(f'gd: loss vs epoch')
 
+    log_lr = [np.log10(x) for x in res['lr']]
     train_accuracy = [x['train_accuracy'] for x in res['res']]
     test_accuracy = [x['test_accuracy'] for x in res['res']]
     train_recall = [x['train_recall'] for x in res['res']]
@@ -170,38 +172,38 @@ def plot_p2_tune_gd_lr(res: Dict):
     num_epochs = [len(x['loss_cur']) for x in res['res']]
     fit_time_per_epoch = [fit_time[i]/num_epochs[i] for i in range(len(num_epochs))]
 
-    ax[0][1].plot(res['lr'], train_accuracy, label='train_accuracy')
-    ax[0][1].plot(res['lr'], test_accuracy, label='test_accuracy')
+    ax[0][1].plot(log_lr, train_accuracy, label='train_accuracy')
+    ax[0][1].plot(log_lr, test_accuracy, label='test_accuracy')
     ax[0][1].set_ylabel('accuracy', fontsize=10)
-    ax[0][1].set_xlabel('lr', fontsize=10)
+    ax[0][1].set_xlabel('log10(lr)', fontsize=10)
     ax[0][1].legend()
-    ax[0][1].set_title(f'gd: accuracy vs lr')
+    ax[0][1].set_title(f'gd: accuracy vs log10(lr)')
 
-    ax[0][2].plot(res['lr'], train_recall, label='train_recall')
-    ax[0][2].plot(res['lr'], test_recall, label='test_recall')
+    ax[0][2].plot(log_lr, train_recall, label='train_recall')
+    ax[0][2].plot(log_lr, test_recall, label='test_recall')
     ax[0][2].set_ylabel('recall', fontsize=10)
-    ax[0][2].set_xlabel('lr', fontsize=10)
+    ax[0][2].set_xlabel('log10(lr)', fontsize=10)
     ax[0][2].legend()
-    ax[0][2].set_title(f'gd: recall vs lr')
+    ax[0][2].set_title(f'gd: recall vs log10(lr)')
 
-    ax[1][0].plot(res['lr'], train_f1, label='train_f1')
-    ax[1][0].plot(res['lr'], test_f1, label='test_f1')
+    ax[1][0].plot(log_lr, train_f1, label='train_f1')
+    ax[1][0].plot(log_lr, test_f1, label='test_f1')
     ax[1][0].set_ylabel('f1 score', fontsize=10)
-    ax[1][0].set_xlabel('lr', fontsize=10)
+    ax[1][0].set_xlabel('log10(lr)', fontsize=10)
     ax[1][0].legend()
-    ax[1][0].set_title(f'gd: f1 score vs lr')
+    ax[1][0].set_title(f'gd: f1 score vs log10(lr)')
 
-    ax[1][1].plot(res['lr'], fit_time, label='fit_time')
+    ax[1][1].plot(log_lr, fit_time, label='fit_time')
     ax[1][1].set_ylabel('fit_time', fontsize=10)
-    ax[1][1].set_xlabel('lr', fontsize=10)
+    ax[1][1].set_xlabel('log10(lr)', fontsize=10)
     ax[1][1].legend()
-    ax[1][1].set_title(f'gd: fit_time vs lr')
+    ax[1][1].set_title(f'gd: fit_time vs log10(lr)')
 
-    ax[1][2].plot(res['lr'], fit_time_per_epoch, label='fit_time')
+    ax[1][2].plot(log_lr, fit_time_per_epoch, label='fit_time')
     ax[1][2].set_ylabel('fit_time_per_epoch', fontsize=10)
-    ax[1][2].set_xlabel('lr', fontsize=10)
+    ax[1][2].set_xlabel('log10(lr)', fontsize=10)
     ax[1][2].legend()
-    ax[1][2].set_title(f'gd: fit_time_per_epoch vs lr')
+    ax[1][2].set_title(f'gd: fit_time_per_epoch vs log10(lr)')
 
     fig.savefig(os.path.join(BASE_DIR, 'plots', f'nn_tune_gd_lr.png'), bbox_inches='tight')
     plt.close()
